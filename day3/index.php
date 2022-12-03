@@ -19,19 +19,19 @@ for ($i=0; $i < sizeof($inputArray); $i++) {
     $secondHalf = substr($inputArray[$i], ($stringLength / 2), $stringLength);
 
     // echo "<p>" .  $inputArray[$i] . "</p>";
-    // echo "<p>" .  $firstHalf . " . . . . . . . .   " . $secondHalf . "</p>";
+    echo "<p>" .  $firstHalf . " . . . . . . . .   " . $secondHalf . "</p>";
     $letter = FindDuplicate($firstHalf, $secondHalf);
-    // echo ConvertLetterToNumber($letter);
+    echo ConvertLetterToNumber($letter);
     array_push($points, ConvertLetterToNumber($letter));
 }
 
 function FindDuplicate($firstHalf, $secondHalf)
 {
-    for ($i=0; $i < strlen($secondHalf)-1; $i++) {
+    for ($i=0; $i < strlen($secondHalf); $i++) {
         // echo $firstHalf[$i];
         $itemDuplicate = strpos($secondHalf, $firstHalf[$i]);
         if ($itemDuplicate !== false) {
-            // echo strpos($secondHalf, $firstHalf[$i]) . $firstHalf[$i] . " ";
+            echo strpos($secondHalf, $firstHalf[$i]) . $firstHalf[$i] . " ";
             return $firstHalf[$i];
         }
     }
