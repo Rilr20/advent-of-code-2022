@@ -27,7 +27,6 @@ namespace day4
 
                 result = overlaps(ranges[0], ranges[1]);
                 part2Count = result ? part2Count += 1 : part2Count;
-
             }
             Console.WriteLine(InRangeCount + "\n");
             Console.WriteLine(part2Count);
