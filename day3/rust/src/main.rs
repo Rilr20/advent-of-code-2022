@@ -2,7 +2,6 @@ use std::fs::File;
 use std::io::prelude::*;
 
 fn main() {
-    let mut calories: Vec<u32> = Vec::new();
     let file_path = "./input.txt";
 
     let mut file = File::open(file_path).expect("Can't Open File!");
@@ -35,7 +34,7 @@ fn main() {
 
 fn find_duplicate_three(group: Vec<&str>) -> u32 {
     // let char = 'c';
-    println!("{:?}", group);
+    // println!("{:?}", group);
     let mut res = 0;
     for char in group[0].chars() {
         if group[1].contains(char) && group[2].contains(char)  {
@@ -53,7 +52,7 @@ fn rucksack(first_comp: &str, second_comp: &str) -> u32 {
     // println!("{}", second_comp);
     for char in first_comp.chars() {
         if second_comp.contains(char) {
-            println!("{}", char);
+            // println!("{}", char);
             let res = char_to_int(char);
             return res;
         }
@@ -73,7 +72,7 @@ fn char_to_int(char: char) -> u32 {
         + 1;
     // num += position.unwrap_or(0);
     if char.is_uppercase() {
-        println!("upper case");
+        // println!("upper case");
         num += 26;
     }
     num.try_into().unwrap()
