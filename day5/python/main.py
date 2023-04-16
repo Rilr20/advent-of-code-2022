@@ -46,8 +46,9 @@ def moves(amount, _from, to, containers):
         # tmp = containers[int(_from)][0]
         # # containers[int(_from)].pop()
         # # containers[int(to)].append(tmp)
-        i+= 1
         move(_from, to, containers)
+        i+= 1
+        print(i)
 
 def move(_from, to, containers):
     #print("from pos " + str(_from))
