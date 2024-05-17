@@ -16,7 +16,7 @@ export default {
 
                 if (previous_tree < parseInt(row[i])) {
                     if (array.indexOf(`${i},${index}`) === -1) {
-                        // array.push(`${i},${index}`)
+                        array.push(`${i},${index}`)
                     }
                     visible_trees++;
                 } 
@@ -46,12 +46,10 @@ export default {
                     // console.log(y_position[x_position]);
                     
                     if (array.indexOf(`${index},${x_position}`) === -1) {
-                        // array.push(`${index},${x_position}`)
+                        array.push(`${index},${x_position}`)
                     }
                 }
-                // else {
-                //     break
-                // }
+                
                 if (previous_tree < parseInt(rows[x_position][index])) {
                     previous_tree = parseInt(rows[x_position][index])
                 }
@@ -61,24 +59,17 @@ export default {
 
         index = rows[0].length - 1
 
-        // rotation = rotateData(rows)
-        // console.log(rotation);
         //looking from the south
         rotation.forEach(y_position => {
             previous_tree = -1
             for (let x_position = y_position.length - 1; x_position >= 0; x_position--) {
-                // console.log(`${index},${x_position}`);
-                // console.log(rows[x_position][index]);
 
                 if (previous_tree < parseInt(rows[x_position][index])) {
                     // console.log(y_position[x_position]);
-                    if (array.indexOf(`${x_position},${index}`) === -1) {
-                        array.push(`${x_position},${index}`)
+                    if (array.indexOf(`${index},${x_position}`) === -1) {
+                        array.push(`${index},${x_position}`)
                     }
                 }
-                // else {
-                //     break
-                // }
                 if (previous_tree < parseInt(rows[x_position][index])) {
                     previous_tree = parseInt(rows[x_position][index])
                 }
@@ -87,9 +78,6 @@ export default {
         })
 
         index = rows[0].length - 1
-        // correct
-        // rotation = rotateData(rotation)
-        // console.log(rotation);
         
         //looking from the east
         let highest_tree = 0
@@ -98,13 +86,10 @@ export default {
             for (let x_position = y_position.length - 1; x_position >= 0; x_position--) {
                 if (highest_tree < parseInt(y_position[x_position])) {
                     if (array.indexOf(`${x_position},${index}`) === -1) {
-                        // array.push(`${x_position},${index}`)
+                        array.push(`${x_position},${index}`)
 
                     }
                 }
-                // else {
-                //     break
-                // }
                 if (highest_tree < parseInt(y_position[x_position])) {
                     highest_tree = parseInt(y_position[x_position])
                 }
@@ -112,27 +97,8 @@ export default {
             index--
         })
 
-        console.log(array);
-        // rotateData(rows)
         return array.length
 
-        function rotateData(data: string[]) {
-            const rotation: string[] = []
-
-            for (let i = 0; i < data[0].length; i++) {
-                // const element = array[i];
-                let row: string[] = []
-                for (let j = 0; j < data.length; j++) {
-                    row.push(data[j][i])
-
-                }
-                // let joined = row.join('')
-                rotation.push(row.reverse().join(''))
-            }
-            // console.log(data);
-            // console.log(rotation);
-            return rotation
-        }
     },
     part2(file: string): number {
         // Implementation
