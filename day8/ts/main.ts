@@ -87,7 +87,49 @@ export default {
     },
     part2(file: string): number {
         // Implementation
+        let rows = file.split("\n")
+        let returnValue = 0
+        for (let y_position = 0; y_position < rows.length; y_position++) {
+            for (let x_position = 0; x_position < rows[y_position].length; x_position++) {
+                let count = checkTrees(rows, x_position, y_position)
+                if (count > returnValue) {
+                    return count
+                }
+            }
+        }
 
-        return 0
+        return returnValue
+    
+        function checkTrees(rows: string[], x:number, y:number) {
+            let bool_1 = false // up
+            let bool_2 = false // down
+            let bool_3 = false // left
+            let bool_4 = false // right
+            let count_1 = 0
+            let count_2 = 0
+            let count_3 = 0
+            let count_4 = 0
+            for (let i = 0; i < rows.length; i++) {
+                // const element = array[i];
+                if (!bool_1 && x+i >= 0 && rows[y][x+1] < rows[y][x]) {
+                    count_1 ++
+                } else {
+                    bool_1 = true
+                }
+
+                if (!bool_2) {
+                    count_2++
+                } else {
+                    bool_2 = true
+                }
+
+                if (bool_1 && bool_2 && bool_3 && bool_4) {
+                    break
+                }
+            }
+
+            return count_1 * count_2 * count_3 * count_4
+        }
     }
+
 };
