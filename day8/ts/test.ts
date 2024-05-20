@@ -43,8 +43,8 @@ function part_1_test_real_input() {
     console.log("Part 1 returned " + result);   
 }
 function part_2_test_example_1() {
-    let example = ""
-    let expected = 0
+    let example = getFile('example.txt')
+    let expected = 8
     let result = part2(example);
     if (result == expected) {
         console.log("PASSED: part 2 returned " + result);   
@@ -76,7 +76,7 @@ function run() {
     // part_1_test_example_2()
     part_1_test_real_input()
 
-    // part_2_test_example_1()
+    part_2_test_example_1()
     // part_2_test_example_2()
     // part_2_test_real_input()
 }

@@ -25,7 +25,7 @@ export default {
         });
 
         index = 0
-        
+
         // looking at it from the north
         rows.forEach(y_position => {
 
@@ -92,42 +92,63 @@ export default {
         for (let y_position = 0; y_position < rows.length; y_position++) {
             for (let x_position = 0; x_position < rows[y_position].length; x_position++) {
                 let count = checkTrees(rows, x_position, y_position)
+                // console.log(count);
+
                 if (count > returnValue) {
-                    return count
+                    returnValue = count
                 }
             }
         }
 
         return returnValue
-    
-        function checkTrees(rows: string[], x:number, y:number) {
-            let bool_1 = false // up
-            let bool_2 = false // down
-            let bool_3 = false // left
-            let bool_4 = false // right
+
+        function checkTrees(rows: string[], x: number, y: number) {
+            let bool_1 = false // right
+            let bool_2 = false // left
+            let bool_3 = false // up
+            let bool_4 = false // down
             let count_1 = 0
             let count_2 = 0
             let count_3 = 0
             let count_4 = 0
-            for (let i = 0; i < rows.length; i++) {
-                // const element = array[i];
-                if (!bool_1 && x+i >= 0 && rows[y][x+1] < rows[y][x]) {
-                    count_1 ++
+            // console.log(rows);
+
+            // start at one otherwise comparision starts at itself
+            for (let i = 1; i < rows[y].length; i++) {
+                if (!bool_1 && x + i < rows[y].length && parseInt(rows[y][x + i]) < parseInt(rows[y][x])) {
+                    count_1++
+
+
                 } else {
                     bool_1 = true
                 }
 
-                if (!bool_2) {
+                if (!bool_2  && x - i >= 0 && parseInt(rows[y][x - i]) < parseInt(rows[y][x])) {
+
                     count_2++
                 } else {
                     bool_2 = true
+                }
+                    
+                if (!bool_3 && y-i >= 0 && parseInt(rows[y-i][x]) < parseInt(rows[y][x])) {
+                    count_3 ++
+                } else {
+                    bool_3 = true
+                }
+
+                if (!bool_4 && y+i < rows.length && parseInt(rows[y+i][x]) < parseInt(rows[y][x])) {
+                    count_4++
+                } else {
+                    bool_4 = true
                 }
 
                 if (bool_1 && bool_2 && bool_3 && bool_4) {
                     break
                 }
             }
-
+            // console.log(count_2);
+            console.log(`${x},${y}: ${count_1} * ${count_2} * ${count_3} * ${count_4}`);
+            
             return count_1 * count_2 * count_3 * count_4
         }
     }
