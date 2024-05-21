@@ -107,6 +107,10 @@ export default {
             let bool_2 = false // left
             let bool_3 = false // up
             let bool_4 = false // down
+            let prev_tree_1 = false
+            let prev_tree_2 = false
+            let prev_tree_3 = false
+            let prev_tree_4 = false
             let count_1 = 0
             let count_2 = 0
             let count_3 = 0
@@ -117,28 +121,50 @@ export default {
             for (let i = 1; i < rows[y].length; i++) {
                 if (!bool_1 && x + i < rows[y].length && parseInt(rows[y][x + i]) < parseInt(rows[y][x])) {
                     count_1++
-
+                    prev_tree_1 = true
 
                 } else {
+                    if (prev_tree_1 && rows[y][x+i] !== undefined) {
+                        console.log(rows[y][x] + " " + rows[y][x+i]);
+                        
+                        count_1++
+                        prev_tree_1 = false
+                    }
                     bool_1 = true
                 }
-
+                
                 if (!bool_2  && x - i >= 0 && parseInt(rows[y][x - i]) < parseInt(rows[y][x])) {
-
                     count_2++
+                    prev_tree_2 = true
+                    
                 } else {
+                    if (prev_tree_2 && rows[y][x-i] !== undefined) {
+                        count_2++
+                        prev_tree_2 = false
+                    }
                     bool_2 = true
                 }
-                    
+                
                 if (!bool_3 && y-i >= 0 && parseInt(rows[y-i][x]) < parseInt(rows[y][x])) {
                     count_3 ++
+                    prev_tree_3=true
                 } else {
+                    if (prev_tree_3 && rows[y-i] !== undefined && rows[y-i][x] !== undefined) {
+                        count_3++
+                        prev_tree_3=false
+                    }
                     bool_3 = true
                 }
 
                 if (!bool_4 && y+i < rows.length && parseInt(rows[y+i][x]) < parseInt(rows[y][x])) {
                     count_4++
+                    prev_tree_4=true
                 } else {
+                    
+                    if (prev_tree_4 && rows[y+i] !== undefined && rows[y+1][x] !== undefined) {
+                        count_4++
+                        prev_tree_4 = false
+                    }
                     bool_4 = true
                 }
 
@@ -146,8 +172,6 @@ export default {
                     break
                 }
             }
-            // console.log(count_2);
-            console.log(`${x},${y}: ${count_1} * ${count_2} * ${count_3} * ${count_4}`);
             
             return count_1 * count_2 * count_3 * count_4
         }
